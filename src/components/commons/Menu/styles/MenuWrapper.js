@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TextStyleVariants } from '../../../foundation/Text';
 
 export const MenuWrapper = styled.nav`
   font-family: 'Rubik', sans-serif;
@@ -16,17 +17,17 @@ MenuWrapper.LeftSide = styled.div`
   margin: 0;
   order: 1;
   /* ${breakpointsMedia({
-    md: css`
-        width: 131px;
-        height: 32px;
-      `,
-  })}
+  md: css`
+          width: 131px;
+          height: 32px;
+        `,
+})}
   ${breakpointsMedia({
-    md: css`
-      order: initial;
-      padding-right: 16px;
-    `,
-  })} */
+  md: css`
+        order: initial;
+        padding-right: 16px;
+      `,
+})} */
 `;
 
 MenuWrapper.CentralSide = styled.div`
@@ -44,7 +45,7 @@ MenuWrapper.CentralSide = styled.div`
   padding: 12px;
   
   /* ${breakpointsMedia({
-    md: css`
+  md: css`
       max-width: 332px;
       justify-content: space-between;
       flex: 1;
@@ -54,7 +55,7 @@ MenuWrapper.CentralSide = styled.div`
       padding-top: 0;
       padding-bottom: 0;
     `,
-  })} */
+})} */
   a {
     text-align: center;
     display: block;
@@ -62,13 +63,13 @@ MenuWrapper.CentralSide = styled.div`
     color: #88989E;
     transition: 200ms ease-in-out;
     /* ${breakpointsMedia({
-    xs: css`
+  xs: css`
         ${TextStyleVariants.smallestException}
     `,
-    md: css`
+  md: css`
       ${TextStyleVariants.paragraph1}
     `,
-  })} */
+})} */
     &:hover,
     &:focus {
       font-weight: 500;
@@ -86,8 +87,8 @@ MenuWrapper.RightSide = styled.div`
   order: 2;
   justify-content: flex-end;
   /* ${breakpointsMedia({
-    md: css`
+  md: css`
       order: initial;
     `,
-  })} */
+})} */
 `;
