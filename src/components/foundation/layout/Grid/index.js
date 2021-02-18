@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { breakpointsMedia } from '../../../../theme/utils/breakpointsMedia';
-// import { propToStyle } from '../../../../theme/utils/propToStyle';
+import { propToStyle } from '../../../../theme/utils/propToStyle';
 
 const Col = styled.div`
   padding-right: 16px;
@@ -82,6 +82,10 @@ const Col = styled.div`
       }),
     });
   }}
+  ${propToStyle('display')}
+  ${propToStyle('alignItems')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('flexDirection')}
 `;
 
 Col.defaultProps = {
@@ -118,6 +122,7 @@ export const Grid = {
       max-width: 1222px;
     `,
   })}
+  ${propToStyle('marginTop')}
   `,
   Row: styled.div`
     display: flex;
