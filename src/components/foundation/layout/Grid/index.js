@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { breakpointsMedia } from '../../../../theme/utils/breakpointsMedia';
-import { propToStyle } from '../../../../theme/utils/propToStyle';
+import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
+import propToStyle from '../../../../theme/utils/propToStyle';
 
 const Col = styled.div`
   padding-right: 16px;
@@ -93,7 +93,7 @@ Col.defaultProps = {
   offset: {},
 };
 
-export const Grid = {
+const Grid = {
   Container: styled.div`
     width: 100%;
     padding-right: 28px;
@@ -132,3 +132,5 @@ export const Grid = {
   `,
   Col,
 };
+
+export default Grid;
