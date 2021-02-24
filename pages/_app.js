@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import PropTypes, { any } from 'prop-types';
 import Head from 'next/head';
 import theme from '../src/theme';
 import GlobalStyle from '../src/theme/GlobalStyle';
@@ -24,3 +24,13 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+
+App.defaultProps = {
+  pageProps: any,
+  Component: any,
+};
+
+App.propTypes = {
+  pageProps: PropTypes.shape({}),
+  Component: PropTypes.elementType,
+};
