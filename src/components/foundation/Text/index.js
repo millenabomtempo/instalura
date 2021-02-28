@@ -22,25 +22,27 @@ const smallestException = css`
   `}
 `;
 
+const title = css`
+  ${({ theme }) => css`
+    font-size: ${theme.typographyVariants.titleXS.fontSize};
+    font-weight: ${theme.typographyVariants.titleXS.fontWeight};
+    line-height: ${theme.typographyVariants.titleXS.lineHeight};
+  `}
+  ${breakpointsMedia({
+    md: css`
+      ${({ theme }) => css`
+        font-size: ${theme.typographyVariants.title.fontSize};
+        font-weight: ${theme.typographyVariants.title.fontWeight};
+        line-height: ${theme.typographyVariants.title.lineHeight};
+      `}
+    `,
+  })}
+`;
+
 export const TextStyleVariants = {
   smallestException,
   paragraph1,
-  title: css`
-    ${({ theme }) => css`
-      font-size: ${theme.typographyVariants.titleXS.fontSize};
-      font-weight: ${theme.typographyVariants.titleXS.fontWeight};
-      line-height: ${theme.typographyVariants.titleXS.lineHeight};
-    `}
-    ${breakpointsMedia({
-    md: css`
-        ${({ theme }) => css`
-          font-size: ${theme.typographyVariants.title.fontSize};
-          font-weight: ${theme.typographyVariants.title.fontWeight};
-          line-height: ${theme.typographyVariants.title.lineHeight};
-        `}
-      `,
-  })}
-  `,
+  title,
 };
 
 const TextBase = styled.span`
@@ -69,10 +71,11 @@ export default function Text({
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
+  children: null,
 };
 
 Text.propTypes = {
-  children: PropTypes.node.isRequired,
   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span']),
   variant: PropTypes.oneOf(['title', 'paragraph1', 'smallestException']),
+  children: PropTypes.node,
 };
