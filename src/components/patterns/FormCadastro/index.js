@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Lottie } from '@crello/react-lottie';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
@@ -183,3 +184,14 @@ export default function FormCadastro({ propsDoModal }) {
     </Grid.Row>
   );
 }
+
+FormCadastro.defaultProps = {
+  propsDoModal: PropTypes.shape({}),
+};
+
+FormCadastro.propTypes = {
+  propsDoModal: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.bool,
+    PropTypes.func]),
+};
