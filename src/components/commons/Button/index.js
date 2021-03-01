@@ -7,6 +7,9 @@ import propToStyle from '../../../theme/utils/propToStyle';
 const ButtonGhost = css`
   color: ${({ theme, variant }) => get(theme, `colors.${variant}.color`)};
   background-color: transparent;
+  ${propToStyle('position')}
+  ${propToStyle('right')}
+  ${propToStyle('padding')}
 `;
 
 const ButtonDefault = css`

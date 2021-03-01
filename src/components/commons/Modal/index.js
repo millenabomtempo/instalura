@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { motion } from 'framer-motion';
+import Button from '../Button';
 
 const ModalWrapper = styled.div`
   display: flex;
@@ -71,6 +72,19 @@ export default function Modal({ isOpen, onClose, children }) {
         {children({
           'data-modal-safe-area': 'true',
         })}
+        <Button
+          ghost
+          position="absolute"
+          right="0"
+          padding={{
+            xs: '0',
+            sm: '0',
+            md: '0',
+          }}
+          onClick={onClose}
+        >
+          <img src="/images/close.svg" alt="Fechar modal" />
+        </Button>
       </motion.div>
     </ModalWrapper>
   );
