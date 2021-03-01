@@ -1,15 +1,29 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
+import { Lottie } from '@crello/react-lottie';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
 import Box from '../../foundation/layout/Box';
 import Grid from '../../foundation/layout/Grid';
 import Text from '../../foundation/Text';
 
+import successAnimation from './animations/success.json';
+import errorAnimation from './animations/error.json';
+
+const formStates = {
+  DEFAULT: 'DEFAULT',
+  LOADING: 'LOADING',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+};
+
 function FormContent() {
+  const [isFormSubmited, setIsFormSubmited] = React.useState(false);
+  const [submissionStatus, setSubmissionStatus] = React.useState(formStates.DEFAULT);
+
   const [userInfo, setUserInfo] = useState({
-    email: 'exemple@domain.com',
-    user: 'John Doe',
+    name: 'John Doe',
+    userName: 'john.doe',
   });
 
   function handleChange(e) {
@@ -22,13 +36,47 @@ function FormContent() {
     );
   }
 
-  const isFormInvalid = userInfo.email.length === 0 || userInfo.user.length === 0;
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setIsFormSubmited(true);
+
+    // Data Transfer Object
+    const userDTO = {
+      username: userInfo.userName,
+      name: userInfo.name,
+    };
+
+    fetch('https://instalura-api.vercel.app/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userDTO),
+    })
+      .then((respostaDoServidor) => {
+        if (respostaDoServidor.ok) {
+          return respostaDoServidor.json();
+        }
+
+        throw new Error('Não foi possível cadastrar o usuário agora :(');
+      })
+      .then((respostaConvertidaEmObjeto) => {
+        setSubmissionStatus(formStates.DONE);
+        // eslint-disable-next-line no-console
+        console.log(respostaConvertidaEmObjeto);
+      })
+      .catch((error) => {
+        setSubmissionStatus(formStates.ERROR);
+        // eslint-disable-next-line no-console
+        console.error(error);
+      });
+  }
+
+  const isFormInvalid = userInfo.name.length === 0 || userInfo.userName.length === 0;
 
   return (
-    <form onSubmit={(e) => {
-      e.preventDefault();
-    }}
-    >
+    <form onSubmit={handleSubmit}>
       <Text
         variant="title"
         tag="h1"
@@ -48,17 +96,17 @@ function FormContent() {
 
       <div>
         <TextField
-          placeholder="Email"
-          name="email"
-          value={userInfo.email}
+          placeholder="Nome"
+          name="name"
+          value={userInfo.name}
           onChange={handleChange}
         />
       </div>
       <div>
         <TextField
           placeholder="Usuário"
-          name="user"
-          value={userInfo.user}
+          name="userName"
+          value={userInfo.userName}
           onChange={handleChange}
         />
       </div>
@@ -71,6 +119,33 @@ function FormContent() {
       >
         Cadastrar
       </Button>
+      {isFormSubmited && submissionStatus === formStates.DONE && (
+        <Box
+          display="flex"
+          justifyContent="center"
+        >
+          <Lottie
+            width="150px"
+            height="150px"
+            config={{ animationData: successAnimation, loop: true, autoplay: true }}
+          />
+          {/* https://lottiefiles.com/11204-success */}
+        </Box>
+      )}
+
+      {isFormSubmited && submissionStatus === formStates.ERROR && (
+        <Box
+          display="flex"
+          justifyContent="center"
+        >
+          <Lottie
+            width="150px"
+            height="150px"
+            config={{ animationData: errorAnimation, loop: true, autoplay: true }}
+          />
+          {/* https://lottiefiles.com/14331-error */}
+        </Box>
+      )}
     </form>
   );
 }
