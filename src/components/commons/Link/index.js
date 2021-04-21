@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import NextLink from 'next/link';
 import PropTypes from 'prop-types';
@@ -21,7 +22,6 @@ const StyledLink = styled.a`
 export default function Link({ href, children, ...props }) {
   return (
     <NextLink href={href} passHref>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <StyledLink {...props}>
         {children}
       </StyledLink>

@@ -1,23 +1,30 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import FAQScreen from '../../src/components/screens/FACScreen';
+import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 
-export default function FAQPage(props) {
+function FAQPage({ faqCategories }) {
   return (
-    <FAQScreen {...props} />
+    <FAQScreen faqCategories={faqCategories} />
   );
 }
+FAQPage.propTypes = FAQScreen.propTypes;
+
+export default websitePageHOC(FAQPage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Perguntas Frequentes',
+    },
+  },
+});
 
 export async function getStaticProps() {
-  const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq').then(async (res) => {
-    const response = await res.json();
-    return response.data;
-  });
+  const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq')
+    .then((respostaDoServer) => respostaDoServer.json())
+    .then((respostaConvertida) => respostaConvertida.data);
 
-  // Falar sobre tamanho da página aqui e tomar cuidado com recursos extras que vão pra página
   return {
     props: {
       faqCategories,
-    },
+    }, // will be passed to the page component as props
   };
 }
