@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Footer from '../src/components/commons/Footer';
 import Menu from '../src/components/commons/Menu';
-import Button from '../src/components/commons/Button';
+import { Button } from '../src/components/commons/Button';
 import Text from '../src/components/foundation/Text';
 import Grid from '../src/components/foundation/layout/Grid';
 import Box from '../src/components/foundation/layout/Box';
@@ -33,7 +33,9 @@ export default function Home() {
         )}
       </Modal>
 
-      <Menu />
+      <Menu
+        onCadastrarClick={() => setModalState(true)}
+      />
 
       <Grid.Container
         marginTop={{
