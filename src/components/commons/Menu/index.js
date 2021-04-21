@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '../Button';
+import Button from '../Button';
 import Logo from '../../../theme/Logo';
 import Text from '../../foundation/Text';
 import MenuWrapper from './styles/MenuWrapper';

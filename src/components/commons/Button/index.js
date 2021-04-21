@@ -56,7 +56,7 @@ const ButtonWrapper = styled.button`
     opacity: .5;
   }
 `;
-export const Button = ({ href, ...props }) => {
+export default function Button({ href, ...props }) {
   const isLink = Boolean(href);
   const componentTag = isLink ? Link : 'button';
 
@@ -64,7 +64,7 @@ export const Button = ({ href, ...props }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
     <ButtonWrapper as={componentTag} href={href} {...props} />
   );
-};
+}
 
 Button.defaultProps = {
   href: undefined,
@@ -73,5 +73,3 @@ Button.defaultProps = {
 Button.propTypes = {
   href: PropTypes.string,
 };
-
-export default Button;
