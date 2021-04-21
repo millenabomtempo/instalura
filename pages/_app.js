@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import theme from '../src/theme';
-import GlobalStyle from '../src/theme/GlobalStyle';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -17,10 +14,7 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </>
   );
 }
