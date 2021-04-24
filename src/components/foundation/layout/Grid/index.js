@@ -95,6 +95,20 @@ Col.defaultProps = {
   offset: {},
 };
 
+const Row = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -16px;
+  margin-left: -16px;
+  ${propToStyle('flex')}
+  ${propToStyle('marginLeft')}
+  ${propToStyle('marginRight')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('marginTop')}
+  ${propToStyle('marginBottom')}
+  ${propToStyle('flexDirection')}
+`;
+
 const Grid = {
   Container: styled.div`
     width: 100%;
@@ -125,20 +139,11 @@ const Grid = {
     `,
   })}
   ${propToStyle('marginTop')}
+  ${propToStyle('display')}
+  ${propToStyle('flex')}
+  ${propToStyle('alignItems')}
   `,
-  Row: styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -16px;
-    margin-left: -16px;
-    ${propToStyle('flex')}
-    ${propToStyle('marginLeft')}
-    ${propToStyle('marginRight')}
-    ${propToStyle('justifyContent')}
-    ${propToStyle('marginTop')}
-    ${propToStyle('marginBottom')}
-    ${propToStyle('flexDirection')}
-  `,
+  Row,
   Col,
 };
 
