@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function useForm({
+export default function useForm({
   initialValues,
   onSubmit,
   validateSchema,
