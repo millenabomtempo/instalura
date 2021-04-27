@@ -34,7 +34,7 @@ jobs:
         run: yarn install
       - name: Roda o Linter!
         run: yarn lint
-unit_tests:
+  unit_tests:
     name: Unit Tests
     runs-on: ubuntu-latest # The type of runner that the job will run on
     steps: # Steps represent a sequence of tasks that will be executed as part of the job
@@ -81,4 +81,5 @@ unit_tests:
         run: yarn --prefer-offline
 
       - name: Run Integration Tests
-        run: yarn test:integration:build 
+        run: yarn test:integration:build
+  
