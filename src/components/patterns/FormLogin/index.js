@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
 import useForm from '../../../infra/hooks/forms/useForm';
-import loginService from '../../../services/login/loginService';
+import { loginService } from '../../../services/login/loginService';
 
 const loginSchema = yup.object().shape({
   usuario: yup
