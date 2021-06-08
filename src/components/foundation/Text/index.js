@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 import propToStyle from '../../../theme/utils/propToStyle';
 import Link from '../../commons/Link';
+import { WebsitePageContext } from '../../wrappers/WebsitePage/context';
 
 const paragraph1 = css`
   ${({ theme }) => css`
@@ -53,45 +54,55 @@ const TextBase = styled.span`
 `;
 
 export default function Text({
+  tag,
   variant,
   children,
-  tag,
   href,
+  cmsKey,
   ...props
 }) {
+  const websitePageContext = React.useContext(WebsitePageContext);
+
+  const componentContent = cmsKey
+    ? websitePageContext.getCMSContent(cmsKey)
+    : children;
+
   if (href) {
     return (
       <TextBase
         as={Link}
-        variant={variant}
         href={href}
+        variant={variant}
         {...props}
       >
-        {children}
+        {componentContent}
       </TextBase>
     );
   }
+
   return (
     <TextBase
       as={tag}
       variant={variant}
       {...props}
     >
-      {children}
+      {componentContent}
     </TextBase>
   );
 }
+
+Text.propTypes = {
+  tag: PropTypes.string,
+  href: PropTypes.string,
+  variant: PropTypes.string,
+  children: PropTypes.node,
+  cmsKey: PropTypes.string,
+};
 
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
   children: null,
   href: '',
-};
-
-Text.propTypes = {
-  tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span', 'input']),
-  variant: PropTypes.oneOf(['title', 'paragraph1', 'smallestException']),
-  children: PropTypes.node,
-  href: PropTypes.string,
+  cmsKey: undefined,
 };

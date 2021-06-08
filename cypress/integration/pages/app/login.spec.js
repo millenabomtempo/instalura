@@ -6,7 +6,7 @@ describe('/pages/app/login/', () => {
   describe('when fill and submit a form login request', () => {
     it('go to the profile page', () => {
       // Pré Teste
-      cy.intercept('https://instalura-api-git-master-omariosouto.vercel.app')
+      cy.intercept('https://instalura-api-git-master.omariosouto.vercel.app')
         .as('userLogin');
 
       // Cenário
@@ -21,7 +21,7 @@ describe('/pages/app/login/', () => {
       cy.wait('@userLogin')
         .then((intercept) => {
           const { token } = intercept.response.body.data;
-          cy.getCookie('APP_TOKEN')
+          cy.getCookie('LOGIN_COOKIE_APP_TOKEN')
             .should('exist')
             .should('have.property', 'value', token);
         });
