@@ -39,6 +39,7 @@ export default {
       dark: {},
     },
   },
+  fontFamily: '\'Rubik\', sans-serif',
   borderRadius: '8px',
   transition: '200ms ease-in-out',
 }
