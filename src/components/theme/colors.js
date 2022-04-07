@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   background: {
     light: {
       color: '#FFFFFF',
@@ -37,4 +37,6 @@ export const colors = {
   modes: {
     dark: {},
   },
-}
+};
+
+export default colors;

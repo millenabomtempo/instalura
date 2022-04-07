@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import normalize from 'styled-normalize'
+import { createGlobalStyle } from 'styled-components';
+import normalize from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -25,6 +25,6 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;

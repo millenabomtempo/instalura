@@ -1,6 +1,6 @@
-import { colors } from './colors'
-import { typographyVariants } from './typographyVariants'
-import { breakpoints } from './breakpoints'
+import colors from './colors';
+import typographyVariants from './typographyVariants';
+import breakpoints from './breakpoints';
 
 export default {
   colors,
@@ -9,4 +9,4 @@ export default {
   fontFamily: '\'Rubik\', sans-serif',
   borderRadius: '8px',
   transition: '200ms ease-in-out',
-}
+};

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
+import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
+import propToStyle from '../../../theme/utils/propToStyle';
 
 const Container = styled.div`
   width: 100%;
@@ -25,14 +26,16 @@ const Container = styled.div`
       max-width: 1222px;
     `,
   })}
-`
+
+  ${propToStyle('marginTop')}
+`;
 
 const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-right: -16px;
   margin-left: -16px;
-`
+`;
 
 const Col = styled.div`
   padding-right: 16px;
@@ -88,7 +91,7 @@ const Col = styled.div`
       margin-left: ${(100 * offset) / 12}%;
     `;
     }
-    
+
     return breakpointsMedia({
       ...(offset.xs && {
         xs: css`
@@ -117,6 +120,13 @@ const Col = styled.div`
       }),
     });
   }}
+
+  ${propToStyle('display')}
+  ${propToStyle('alignItems')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('flexDirection')}
+  ${propToStyle('marginTop')}
+
 `;
 
 Col.defaultProps = {
@@ -124,10 +134,10 @@ Col.defaultProps = {
   offset: {},
 };
 
-
-
-export const Grid = {
+const Grid = {
   Container,
   Row,
   Col,
-}; 
+};
+
+export default Grid;

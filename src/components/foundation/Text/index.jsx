@@ -1,8 +1,10 @@
-import { get } from "lodash"
-import styled, { css } from "styled-components"
-import PropTypes from "prop-types"
-import { breakpointsMedia } from "../../theme/utils/breakpointsMedia";
-import { propToStyle } from "../../theme/utils/propToStyle";
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import { get } from 'lodash';
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
+import breakpointsMedia from '../../theme/utils/breakpointsMedia';
+import propToStyle from '../../theme/utils/propToStyle';
 
 const paragraph1 = css`
   ${({ theme }) => css`
@@ -36,12 +38,12 @@ const title = css`
       `}
     `,
   })}
-`
+`;
 
 export const TextStyleVariants = {
   smallestException,
   paragraph1,
-  title
+  title,
 };
 
 const TextBase = styled.span`
@@ -49,10 +51,15 @@ const TextBase = styled.span`
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
   
   ${propToStyle('textAlign')}
-`
+`;
 
-export default function Text({ children, tag, variant, ...props }) {
-  return(
+export default function Text({
+  children,
+  tag,
+  variant,
+  ...props
+}) {
+  return (
     <TextBase
       as={tag}
       variant={variant}
@@ -60,16 +67,16 @@ export default function Text({ children, tag, variant, ...props }) {
     >
       {children}
     </TextBase>
-  )
+  );
 }
 
-Text.propTypes  = {
-  tag: PropTypes.string.isRequired,
+Text.propTypes = {
+  tag: PropTypes.string,
   variant: PropTypes.string,
-  children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 
 Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
-}
+};
