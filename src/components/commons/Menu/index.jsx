@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Text from '../../foundation/Text';
 import Logo from '../../theme/Logo';
 import Button from '../Button';
 import MenuWrapper from './styles';
 
-export default function Menu() {
+export default function Menu({ onCadastrarClick }) {
   const links = [
     { url: '/', name: 'Home' },
     { url: '/faq', name: 'Perguntas Frequentes' },
@@ -34,12 +35,14 @@ export default function Menu() {
           type="button"
           ghost
           variant="secondary.main"
+          href="/app/login"
         >
           Entrar
         </Button>
         <Button
           type="button"
           variant="primary.main"
+          onClick={onCadastrarClick}
         >
           Cadastrar
         </Button>
@@ -47,3 +50,7 @@ export default function Menu() {
     </MenuWrapper>
   );
 }
+
+Menu.propTypes = {
+  onCadastrarClick: PropTypes.func.isRequired,
+};
