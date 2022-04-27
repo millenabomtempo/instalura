@@ -39,7 +39,10 @@ const Row = styled.div`
   ${propToStyle('flex')}
   ${propToStyle('marginLeft')}
   ${propToStyle('marginRight')}
+  ${propToStyle('marginTop')}
+  ${propToStyle('marginBottom')}
   ${propToStyle('justifyContent')}
+  ${propToStyle('flexDirection')}
 `;
 
 const Col = styled.div`
@@ -132,6 +135,7 @@ const Col = styled.div`
   ${propToStyle('flexDirection')}
   ${propToStyle('marginTop')}
   ${propToStyle('paddingRight')}
+  ${propToStyle('order')}
 `;
 
 Col.defaultProps = {
