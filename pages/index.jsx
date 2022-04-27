@@ -1,44 +1,20 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
-import Button from '../src/components/commons/Button';
-import Footer from '../src/components/commons/Footer';
-import Menu from '../src/components/commons/Menu';
-import Box from '../src/components/foundation/layout/Box';
-import Grid from '../src/components/foundation/layout/Grid';
+import React from 'react';
 import Text from '../src/components/foundation/Text';
-import Modal from '../src/components/commons/Modal';
-import FormCadastro from '../src/components/patterns/FormCadastro';
-import SEO from '../src/components/commons/SEO';
+import Button from '../src/components/commons/Button';
+import Grid from '../src/components/foundation/layout/Grid';
+import { WebsitePageContext } from '../src/components/wrappers/WebsitePage';
+import Box from '../src/components/foundation/layout/Box';
+import websitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
-export default function Home() {
-  const [isModalOpen, setModalState] = useState(false);
+function HomeScreen() {
+  const websitePageContext = React.useContext(WebsitePageContext);
 
   return (
     <Box
-      flex="1"
       display="flex"
-      flexWrap="wrap"
       flexDirection="column"
-      justifyContent="space-between"
-      backgroundImage="url(/images/bubbles.svg)"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="bottom right"
+      flex="1"
     >
-      <SEO headTitle="Home" />
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
-        }}
-      >
-        {(propsDoModal) => (
-          <FormCadastro propsDoModal={propsDoModal} />
-        )}
-      </Modal>
-
-      <Menu
-        onCadastrarClick={() => setModalState(true)}
-      />
       <Grid.Container
         marginTop={{
           xs: '32px',
@@ -47,8 +23,8 @@ export default function Home() {
       >
         <Grid.Row>
           <Grid.Col
-            offset={{ xs: 0, md: 1 }}
             value={{ xs: 12, md: 5 }}
+            offset={{ xs: 0, md: 1 }}
             display="flex"
             alignItems="flex-start"
             justifyContent="center"
@@ -79,23 +55,21 @@ export default function Home() {
             </Text>
 
             <Button
-              variant="primary.main"
               margin={{
                 xs: 'auto',
                 md: 'initial',
               }}
               display="block"
-              onClick={() => { setModalState(!isModalOpen); }}
+              variant="primary.main"
+              onClick={() => websitePageContext.toggleModalCadastro()}
             >
               Cadastrar
             </Button>
-
           </Grid.Col>
           <Grid.Col
-            value={{ xs: 12, md: 6 }}
-            marginTop={{
-              xs: '32px',
-              md: '75px',
+            value={{
+              xs: 12,
+              md: 6,
             }}
           >
             <img
@@ -106,7 +80,19 @@ export default function Home() {
           </Grid.Col>
         </Grid.Row>
       </Grid.Container>
-      <Footer />
     </Box>
   );
 }
+
+export default websitePageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});

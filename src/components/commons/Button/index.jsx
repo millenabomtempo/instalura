@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
@@ -54,13 +55,17 @@ const ButtonWrapper = styled.button`
   ${propToStyle('display')}
 `;
 
-export default function Button({ href, ...props }) {
-  const isLink = Boolean(href);
-  const componentTag = isLink ? Link : 'button';
-
+export default function Button({ href, children, ...props }) {
+  const hasHref = Boolean(href);
+  const tag = hasHref ? Link : 'button';
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <ButtonWrapper as={componentTag} href={href} {...props} />
+    <ButtonWrapper
+      as={tag}
+      href={href}
+      {...props}
+    >
+      {children}
+    </ButtonWrapper>
   );
 }
 
@@ -70,4 +75,5 @@ Button.defaultProps = {
 
 Button.propTypes = {
   href: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
